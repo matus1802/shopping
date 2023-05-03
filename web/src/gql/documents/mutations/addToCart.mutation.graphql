@@ -1,0 +1,14 @@
+mutation addToCart($input: UpdateCartInput!) {
+  addToCart(input: $input) {
+    user {
+      _id
+      itemsInCart {
+        ...ItemFragment
+      }
+    }
+    item {
+      _id
+      inStock
+    }
+  }
+}

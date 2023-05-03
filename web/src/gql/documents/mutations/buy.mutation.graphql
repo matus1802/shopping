@@ -1,0 +1,14 @@
+mutation buy {
+  buy {
+    user {
+      _id
+      itemsInCart {
+        ...ItemFragment
+      }
+    }
+    items {
+      _id
+      inStock
+    }
+  }
+}

@@ -1,0 +1,14 @@
+mutation removeFromCart($input: UpdateCartInput!) {
+  removeFromCart(input: $input) {
+    user {
+      _id
+      itemsInCart {
+        ...ItemFragment
+      }
+    }
+    item {
+      _id
+      inStock
+    }
+  }
+}

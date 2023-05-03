@@ -1,0 +1,51 @@
+version: '3.7'
+
+services:
+  mongodb:
+    image: mongo:6-jammy
+    ports:
+      - 27017:27017
+    volumes:
+      - database:/data/mongodb
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=username
+      - MONGO_INITDB_ROOT_PASSWORD=password
+    networks:
+      - shopping
+
+  api:
+    build:
+      context: ./api
+      dockerfile: Dockerfile
+    ports:
+      - 8080:8080
+    depends_on:
+      - mongodb
+    volumes:
+      - .:/usr/src/app
+      - /usr/src/app/node_modules
+    environment:
+      - MONGO_URL=mongodb://username:password@mongodb:27017
+    networks:
+      - shopping
+
+  web:
+    build:
+      context: ./web
+      dockerfile: Dockerfile
+    ports:
+      - 3000:3000
+    depends_on:
+      - api
+    volumes:
+      - /usr/src/app/node_modules
+    networks:
+      - shopping
+
+volumes:
+  database:
+
+networks:
+  shopping:
+    driver: bridge
+    name: shopping

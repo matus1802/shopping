@@ -1,0 +1,18 @@
+overwrite: true
+schema: 'src/gql/schemas/*.graphql'
+documents: 'src/gql/documents/**/*.graphql'
+generates:
+  src/gql/types/graphql.types.ts:
+    hooks:
+      afterOneFileWrite:
+        - eslint --fix
+    plugins:
+      - 'typescript'
+      - 'typescript-operations'
+      - 'typescript-react-apollo'
+  src/gql/types/apollo-helpers.ts:
+    hooks:
+      afterOneFileWrite:
+        - eslint --fix
+    plugins:
+      - typescript-apollo-client-helpers

@@ -1,0 +1,58 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type Item {
+  _id: String!
+  title: String!
+  description: String!
+  price: Float!
+  inStock: Float!
+  category: String!
+}
+
+type User {
+  _id: String!
+  username: String!
+  password: String!
+  nickname: String!
+  itemsInCart: [Item!]!
+}
+
+type BuyResult {
+  user: User!
+  items: [Item!]!
+}
+
+type UpdateCartResult {
+  user: User!
+  item: Item!
+}
+
+type Query {
+  me: User!
+  items(category: String, offset: Float, limit: Float): [Item!]!
+}
+
+type Mutation {
+  signup(input: SignupInput!): Boolean!
+  login(input: LoginInput!): Boolean!
+  buy: BuyResult!
+  removeFromCart(input: UpdateCartInput!): UpdateCartResult!
+  addToCart(input: UpdateCartInput!): UpdateCartResult!
+}
+
+input SignupInput {
+  username: String!
+  password: String!
+  nickname: String!
+}
+
+input LoginInput {
+  username: String!
+  password: String!
+}
+
+input UpdateCartInput {
+  itemId: String!
+}

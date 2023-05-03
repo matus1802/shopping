@@ -1,0 +1,8 @@
+fragment ItemFragment on Item {
+  _id
+  title
+  description
+  price
+  category
+  inStock
+}

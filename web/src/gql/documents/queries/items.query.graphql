@@ -1,0 +1,5 @@
+query items($category: String, $offset: Float, $limit: Float) {
+  items(category: $category, offset: $offset, limit: $limit) {
+    ...ItemFragment
+  }
+}
